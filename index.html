@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartEDU – darmowe testy i egzaminy do wydruku</title>
+<meta name="description" content="Darmowe testy i egzaminy do wydruku. Próbny egzamin ósmoklasisty z matematyki z kluczem odpowiedzi i kartą odpowiedzi.">
+<meta property="og:title" content="SmartEDU – darmowe testy i egzaminy do wydruku">
+<meta property="og:description" content="Arkusze wzorowane na formule CKE, z kluczem odpowiedzi. Pobierz PDF, wydrukuj, ćwicz.">
+<meta property="og:image" content="img/arkusz-str1.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315233f'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' text-anchor='middle' fill='%23ffe45c'%3ESE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: kartka w kratkę – treść na papierze, granatowy „długopis”, żółty zakreślacz dla akcentów */
+  --paper: #fbfcfe;
+  --grid: #e3e8f1;
+  --ink: #15233f;
+  --ink-soft: #4a5875;
+  --pen: #1f4fd1;
+  --marker: #ffe45c;
+  --line: #c9d1e0;
+  --card: #ffffff;
+  --font-display: "Bricolage Grotesque", "Arial Narrow", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1626; --grid: #1a2438; --ink: #e8edf7; --ink-soft: #a7b3cb; --pen: #7ea2ff;
+    --marker: #d9bf2e; --line: #2c3a55; --card: #141d31; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1626; --grid: #1a2438; --ink: #e8edf7; --ink-soft: #a7b3cb; --pen: #7ea2ff;
+  --marker: #d9bf2e; --line: #2c3a55; --card: #141d31; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6;
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+a { color: var(--pen); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--pen); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.1; margin: 0; }
+.hl { background: linear-gradient(transparent 55%, var(--marker) 55%, var(--marker) 90%, transparent 90%); padding: 0 4px; }
+:root[data-theme="dark"] .hl, :root:not([data-theme="light"]) .hl { color: inherit; }
+
+/* nav */
+nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; flex-wrap: wrap; }
+.logo { font-family: var(--font-display); font-weight: 800; font-size: 26px; text-decoration: none; color: var(--ink); letter-spacing: -0.5px; }
+.logo span { color: var(--pen); }
+nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; flex-wrap: wrap; }
+nav ul a { color: var(--ink); text-decoration: none; font-weight: 500; }
+nav ul a:hover { color: var(--pen); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; padding: 40px 0 64px; }
+.hero h1 { font-size: clamp(38px, 5.4vw, 64px); font-weight: 800; letter-spacing: -1.5px; }
+.hero p.lead { font-size: 19px; color: var(--ink-soft); max-width: 34em; margin: 20px 0 28px; }
+.btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; border-radius: 10px; font: 600 16px var(--font-body);
+  text-decoration: none; cursor: pointer; border: 2px solid var(--ink); background: var(--ink); color: var(--paper); }
+.btn:hover { background: var(--pen); border-color: var(--pen); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { border-color: var(--pen); color: var(--pen); background: transparent; }
+.stack { position: relative; height: 430px; }
+.stack img { position: absolute; width: 270px; border: 1px solid var(--line); box-shadow: 0 14px 34px rgba(21,35,63,.18); background: #fff; border-radius: 3px; }
+.stack img:nth-child(1) { left: 0; top: 30px; transform: rotate(-5deg); }
+.stack img:nth-child(2) { left: 150px; top: 0; transform: rotate(3deg); z-index: 2; }
+.stack .tag { position: absolute; z-index: 3; right: 6px; bottom: 30px; background: var(--marker); color: #15233f; font: 500 13px var(--font-mono);
+  padding: 8px 12px; border-radius: 4px; transform: rotate(-2deg); }
+
+/* sections */
+section { padding: 56px 0; }
+.sec-h { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.sec-h h2 { font-size: clamp(30px, 3.6vw, 42px); font-weight: 800; letter-spacing: -0.8px; }
+.sec-h p { margin: 0; color: var(--ink-soft); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+.chip { border: 1.5px solid var(--line); background: var(--card); color: var(--ink); padding: 7px 14px; border-radius: 999px; font: 500 15px var(--font-body); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.chip small { font-family: var(--font-mono); opacity: .75; margin-left: 4px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+.card { background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.card.main { border: 2px solid var(--ink); }
+.card .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.code { font: 500 13px var(--font-mono); border: 1.5px solid var(--ink); padding: 3px 8px; border-radius: 4px; }
+.badge { font-size: 13px; font-weight: 600; background: var(--marker); color: #15233f; padding: 3px 10px; border-radius: 999px; }
+.badge.soon { background: transparent; border: 1.5px dashed var(--line); color: var(--ink-soft); }
+.card h3 { font-size: 23px; font-weight: 700; }
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); border: 1.5px solid var(--line); border-radius: 10px; overflow: hidden; }
+.facts div { padding: 8px 10px; border-left: 1.5px solid var(--line); font-size: 12.5px; color: var(--ink-soft); }
+.facts div:first-child { border-left: 0; }
+.facts b { display: block; font-size: 18px; color: var(--ink); font-variant-numeric: tabular-nums; font-family: var(--font-display); }
+.card ul { margin: 0; padding-left: 20px; color: var(--ink-soft); font-size: 15.5px; }
+.card .btns .btn { padding: 10px 16px; font-size: 15px; }
+.card.soon-card { background: transparent; border-style: dashed; justify-content: center; }
+.card.soon-card p { margin: 0; color: var(--ink-soft); }
+.status { min-height: 1.4em; font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+/* how */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: s; }
+.step { background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 22px; }
+.step .n { font: 800 15px var(--font-display); width: 34px; height: 34px; border: 2px solid var(--ink); border-radius: 50%; display: grid; place-items: center; margin-bottom: 12px; }
+.step h3 { font-size: 20px; margin-bottom: 6px; }
+.step p { margin: 0; color: var(--ink-soft); font-size: 15.5px; }
+
+/* types */
+.types { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.type { background: var(--card); border: 1.5px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+.type h3 { font-family: var(--font-body); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.type p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+.boxes { display: flex; gap: 6px; margin-bottom: 10px; font: 500 13px var(--font-mono); align-items: center; }
+.boxes i { width: 22px; height: 22px; border: 1.5px solid var(--ink); display: inline-grid; place-items: center; font-style: normal; }
+.boxes i.on { background: var(--ink); color: var(--paper); }
+.boxes .sep { width: 1.5px; height: 22px; background: var(--ink); margin: 0 4px; }
+
+/* about */
+.about { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: start; }
+.about p { max-width: 36em; }
+.note { background: var(--card); border: 1.5px solid var(--line); border-left: 5px solid var(--marker); border-radius: 10px; padding: 18px 20px; font-size: 15px; color: var(--ink-soft); }
+.note b { color: var(--ink); }
+.preview { width: 100%; max-width: 300px; border: 1px solid var(--line); box-shadow: 0 10px 26px rgba(21,35,63,.14); border-radius: 3px; background: #fff; }
+
+footer { border-top: 1.5px solid var(--line); padding: 28px 0 40px; font-size: 14px; color: var(--ink-soft); background: var(--paper); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .hero, .about { grid-template-columns: 1fr; }
+  .stack { height: 360px; max-width: 420px; }
+  .stack img { width: 220px; }
+  .stack img:nth-child(2) { left: 120px; }
+  .steps { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .wrap { padding: 0 16px; }
+  .stack img { width: 180px; } .stack img:nth-child(2) { left: 90px; } .stack { height: 300px; }
+  .facts { grid-template-columns: repeat(2, 1fr); }
+  .facts div:nth-child(3) { border-left: 0; }
+  .facts div:nth-child(n+3) { border-top: 1.5px solid var(--line); }
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav>
+    <a class="logo" href="#start">Smart<span>EDU</span></a>
+    <ul>
+      <li><a href="#materialy">Materiały</a></li>
+      <li><a href="#jak-korzystac">Jak korzystać</a></li>
+      <li><a href="#typy-zadan">Typy zadań</a></li>
+      <li><a href="#o-projekcie">O projekcie</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="start">
+  <div class="wrap hero">
+    <div>
+      <h1>Darmowe testy i egzaminy <span class="hl">do wydruku</span>. Dla każdego.</h1>
+      <p class="lead">SmartEDU przygotowuje arkusze wzorowane na prawdziwych egzaminach, razem z kluczem odpowiedzi i zasadami oceniania. Pobierasz PDF, drukujesz i ćwiczysz jak na egzaminie.</p>
+      <div class="btns">
+        <a class="btn" href="#materialy">Pobierz próbny egzamin</a>
+        <a class="btn ghost" href="#jak-korzystac">Jak to działa</a>
+      </div>
+    </div>
+    <div class="stack" aria-label="Podgląd arkusza: strona tytułowa i strona z zadaniami">
+      <img src="img/arkusz-str1.png" alt="Strona tytułowa próbnego egzaminu ósmoklasisty z matematyki">
+      <img src="img/arkusz-str3.png" alt="Strona arkusza z zadaniami 4–6 i brudnopisem">
+      <span class="tag">SE-M8-01 · 30 pkt</span>
+    </div>
+  </div>
+
+  <section id="materialy">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2>Materiały</h2>
+        <p>Wszystkie pliki są bezpłatne. Format A4, gotowe do druku.</p>
+      </div>
+      <div class="chips" role="group" aria-label="Filtruj materiały">
+        <button class="chip" type="button" data-f="all" aria-pressed="true">Wszystkie</button>
+        <button class="chip" type="button" data-f="e8" aria-pressed="false">Egzamin ósmoklasisty <small>1</small></button>
+        <button class="chip" type="button" data-f="soon" aria-pressed="false">W przygotowaniu</button>
+      </div>
+      <div class="cards">
+        <article class="card main" data-cat="e8">
+          <div class="top"><span class="code">SE-M8-01</span><span class="badge">Nowy</span></div>
+          <h3>Próbny egzamin ósmoklasisty – Matematyka</h3>
+          <div class="facts">
+            <div><b>125</b>minut</div><div><b>20</b>zadań</div><div><b>30</b>punktów</div><div><b>16</b>stron A4</div>
+          </div>
+          <ul>
+            <li>15 zadań zamkniętych i 5 otwartych, jak w formule CKE</li>
+            <li>brudnopis po każdych trzech zadaniach</li>
+            <li>karta odpowiedzi do zamalowania na ostatniej stronie</li>
+            <li>osobny klucz z punktacją każdego kroku rozwiązania</li>
+          </ul>
+          <div class="btns">
+            <a class="btn" href="pdf/se-m8-01-arkusz.pdf" data-dl="SmartEDU_SE-M8-01_arkusz.pdf" download="SmartEDU_SE-M8-01_arkusz.pdf">Pobierz arkusz (PDF)</a>
+            <a class="btn ghost" href="pdf/se-m8-01-klucz.pdf" data-dl="SmartEDU_SE-M8-01_klucz.pdf" download="SmartEDU_SE-M8-01_klucz.pdf">Klucz odpowiedzi (PDF)</a>
+          </div>
+          <p class="status" role="status" aria-live="polite"></p>
+        </article>
+        <article class="card soon-card" data-cat="soon">
+          <div class="top"><span class="code">SE-M8-02</span><span class="badge soon">W przygotowaniu</span></div>
+          <h3>Kolejne arkusze</h3>
+          <p>Następne zestawy pojawią się w tym miejscu. Każdy dostanie własny kod, żeby łatwo było go znaleźć i podać innym.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="jak-korzystac">
+    <div class="wrap">
+      <div class="sec-h"><h2>Jak korzystać</h2><p>Trzy kroki, bez zakładania konta.</p></div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Pobierz PDF</h3><p>Wybierz arkusz i pobierz go razem z kluczem. Klucz to osobny plik, więc nie trafi do ucznia przez przypadek.</p></div>
+        <div class="step"><div class="n">2</div><h3>Wydrukuj</h3><p>Drukuj na A4 w skali 100%, najlepiej dwustronnie. Kartę odpowiedzi z ostatniej strony można odciąć.</p></div>
+        <div class="step"><div class="n">3</div><h3>Rozwiąż i sprawdź</h3><p>Ustaw minutnik na 125 minut. Potem policz punkty według klucza i wpisz wynik na karcie odpowiedzi.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="typy-zadan">
+    <div class="wrap">
+      <div class="sec-h"><h2>Typy zadań w arkuszu</h2><p>Takie same formy zaznaczania jak na egzaminie.</p></div>
+      <div class="types">
+        <div class="type"><div class="boxes">A<i></i> B<i class="on"></i> C<i></i> D<i></i></div><h3>Wybór jednej odpowiedzi</h3><p>Cztery odpowiedzi, poprawna jest jedna.</p></div>
+        <div class="type"><div class="boxes">P<i class="on"></i> F<i></i><span class="sep"></span>P<i></i> F<i class="on"></i></div><h3>Prawda czy fałsz</h3><p>Dwa zdania do oceny. Punkt tylko za obie poprawne oceny.</p></div>
+        <div class="type"><div class="boxes">A<i class="on"></i> B<i></i><span class="sep"></span>C<i class="on"></i> D<i></i></div><h3>Uzupełnianie zdań</h3><p>Jedna odpowiedź z pary A/B i jedna z pary C/D.</p></div>
+        <div class="type"><div class="boxes">T<i class="on"></i> N<i></i><span class="sep"></span>1<i class="on"></i> 2<i></i> 3<i></i></div><h3>Tak lub nie z uzasadnieniem</h3><p>Odpowiedź i wybór jednego z trzech uzasadnień.</p></div>
+        <div class="type"><div class="boxes">0<i></i> 1<i></i> 2<i></i> 3<i class="on"></i></div><h3>Zadania otwarte</h3><p>Pełne rozwiązanie w kratkowanym polu. Punkty za każdy etap.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-projekcie">
+    <div class="wrap about">
+      <div>
+        <div class="sec-h"><h2>O projekcie</h2></div>
+        <p>SmartEDU powstał po to, żeby każdy miał dostęp do darmowych testów, egzaminów i materiałów do nauki. Bez opłat, bez rejestracji i bez reklam.</p>
+        <p>Arkusze są przygotowywane z myślą o druku: z miejscem na rozwiązania, brudnopisem i kartą odpowiedzi. Dzięki temu można ćwiczyć w domu, w klasie albo z rodzeństwem dokładnie tak, jak wygląda to na egzaminie.</p>
+        <div class="note"><b>Ważne:</b> materiały SmartEDU są wzorowane na formule egzaminów Centralnej Komisji Egzaminacyjnej, ale nie są materiałami CKE. Oficjalne arkusze z poprzednich lat publikuje CKE na swojej stronie.</div>
+      </div>
+      <img class="preview" src="img/arkusz-karta.png" alt="Karta odpowiedzi z kratkami do zamalowania dla zadań 1–15 i punktacją zadań otwartych">
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><b>SmartEDU</b> · darmowe testy i egzaminy dla każdego</span>
+    <span>Materiały do bezpłatnego użytku edukacyjnego</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // filtr materiałów
+  var chips = document.querySelectorAll('.chip');
+  var cards = document.querySelectorAll('.cards .card');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      var f = c.getAttribute('data-f');
+      cards.forEach(function (card) { card.hidden = !(f === 'all' || card.getAttribute('data-cat') === f); });
+    });
+  });
+
+  // pobieranie PDF: w claude.ai przez capability "downloads", gdzie indziej zwykły link
+  var dl = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (ns) { dl = ns; }).catch(function () {});
+    }
+  } catch (e) {}
+
+  document.querySelectorAll('a[data-dl]').forEach(function (a) {
+    a.addEventListener('click', function (ev) {
+      if (!dl) return; // brak capability: zostaje zwykły link
+      ev.preventDefault();
+      var status = a.closest('.card').querySelector('.status');
+      status.textContent = 'Przygotowuję plik…';
+      fetch(a.getAttribute('href'))
+        .then(function (r) { if (!r.ok) throw new Error('http'); return r.blob(); })
+        .then(function (blob) { return dl.save({ filename: a.getAttribute('data-dl'), data: blob }); })
+        .then(function () { status.textContent = 'Plik zapisany: ' + a.getAttribute('data-dl'); })
+        .catch(function (err) {
+          if (err && err.code === 'declined') { status.textContent = 'Pobieranie anulowane.'; }
+          else if (err && err.code === 'rate_limited') { status.textContent = 'Poczekaj chwilę i spróbuj ponownie.'; }
+          else { status.textContent = 'Nie udało się pobrać pliku tutaj. Spróbuj ponownie za chwilę.'; }
+        });
+    });
+  });
+})();
+</script>
+</body>
+</html>
